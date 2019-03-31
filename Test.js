@@ -6,59 +6,45 @@ const {Builder, By, Key} = require('selenium-webdriver');
     let driver = await new Builder().forBrowser('chrome').build();
 
     try {
-
+    // open chrome browser
     await driver.get('http://www.google.com');
 
+    //Search "Focus Services"
     await driver.findElement(By.name('q')).sendKeys('Focus Services', Key.RETURN);
 
+    // click on Focus Services – Beyond Expectations  hyperlink
     await driver.findElement(By.className('LC20lb')).click();
 
-      // Verify if button Now Hiring exist
-
-
-    var existed = await driver.findElement(By.xpath('//*[@id="text-4"]/div/p/a/span')).then(function() {
-        return true;//it existed
+    // verify if button 'now hiring' exist
+    var buttonExist = await driver.findElement(By.xpath('//*[@id="text-4"]/div/p/a/span')).then(function() {
+        return true;
     }, function(err) {
-        if (err instanceof webdriver.error.NoSuchElementError) {
+        if (err) {
             console.log(err);
-            return false;//it was not found
+            return false;
             
-        } else {
-            webdriver.promise.rejected(err);
         }
     });
   
-    if (existed = true) {
+    //if button exist keep navigating in FocusServices
+    if (buttonExist === true) {
+        //click on tab carrers
         await driver.findElement(By.xpath('//*[@id="menu-item-6497"]/a/span[2]')).click();
-
+        //filter by inbound
         await driver.findElement(By.xpath('//*[@id="search_keywords"]')).sendKeys('inbound', Key.RETURN);
-
+        // going to second result 
         await driver.findElement(By.xpath('//*[@id="317531"]/div[1]/h3')).click();
-
-      await driver.findElement(By.xpath('//*[@id="description"]/p[3]/span')).then(console.log('Element exists'));
+        // verify that job description exist
+        await driver.findElement(By.xpath('//*[@id="description"]/p[3]/span')).then(console.log('Element "jobs description" exists'));
         
     }
-    //else {
-    //   console.log('Element not founded');
-   // }
-  
-  
-  
-    // Keep working
-    //    await driver.findElement(By.xpath('//*[@id="search_keywords"]')).sendKeys('inbound');
-
-    //verify if element exist
-
 
     }
-
     catch (e) {
         console.log(e);
     }
 
     finally {
-
-    // await driver.quit();
 
     }
 
