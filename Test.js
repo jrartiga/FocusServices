@@ -32,25 +32,31 @@ const {Builder, By, Key} = require('selenium-webdriver');
         //filter by inbound
         await driver.findElement(By.xpath('//*[@id="search_keywords"]')).sendKeys('inbound', Key.RETURN);
         // click on second element
-        await driver.findElement(By.xpath('//*[@id="317531"]/div[1]/h3')).click();
+        await driver.findElement(By.xpath('//*[@id="338745"]')).click();
         //verify job description
-        await driver.findElement(By.xpath('//*[@id="description"]/p[3]/span')).then(console.log('job description exists '));
+       var JobDescriptio = await driver.findElement(By.xpath('//*[@id="description"]/p[5]/span')).then(function(){return true;});
+
+       if (JobDescriptio === true) {
+           console.log(`Job description exist`);
+       }
+      
         
     }
-   
-
-
+  
+    
+// //*[@id="338745"]
+// await driver.findElement(By.xpath('//*[@id="description"]/p[5]/span')).then(console.log('job description exists '));
     }
 
     catch (e) {
         console.log(e);
     }
 
-    finally {
+    //finally {
 
     // await driver.quit();
 
-    }
+   // }
 
     })();
 

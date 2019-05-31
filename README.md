@@ -18,4 +18,4 @@ Paste chromedriver.exe on project folder “FocusServices”
 --On terminal type: 
 node Test.js
 
-This projects has been implemented with the version 73.0.3683.68 of chromedriver and google chrome version 73.0.3683.86
+This projects has been implemented with the version 74 of chromedriver and google chrome version 74
